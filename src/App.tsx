@@ -21,6 +21,14 @@ import {
   type BikeState,
 } from './game/physics';
 
+
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaGithub,
+  FaDiscord,
+} from 'react-icons/fa';
+
 // Objeto con todos los controles desactivados.
 // ": Controls" comprueba que el objeto tenga la estructura esperada.
 const clearControls: Controls = {
@@ -264,7 +272,7 @@ export default function App() {
             href="/fernando-moto-run.zip"
             download
           >
-            Get the code ↗
+            Email me your idea
           </a>
 
           {/* Botón para abrir o cerrar las instrucciones. */}
@@ -293,10 +301,10 @@ export default function App() {
 
       {/* Identificación visual del circuito. */}
       <div className="location">
-        <span>SCENIC ROUTE</span>
+        <span>A SHORT RUN</span>
         <strong>
-          Moto Run
-          <span> / 001</span>
+          Beta
+          <span> / </span>
         </strong>
       </div>
 
@@ -515,32 +523,75 @@ export default function App() {
             </div>
 
             {/* Acciones disponibles después de llegar a la meta. */}
+           {/* Botones y redes sociales en la misma fila. */}
             <div className="finish-actions">
-              {/* Solo muestra el enlace si contactEmail tiene contenido. */}
-              {CONFIG.contactEmail && (
-                <a
-                  className="primary"
+              <a
+                className="primary"
+                href="mailto: fnlopez.engineer@gmail.com"
+              >
+                Let’s talk ↗
+              </a>
 
-                  // mailto abre la aplicación de correo configurada
-                  // con tu dirección como destinatario.
-                  href={'mailto:' + CONFIG.contactEmail}
-                >
-                  Let’s talk ↗
-                </a>
-              )}
-
-              {/* Permite jugar otra vez. */}
               <button className="primary" onClick={reset}>
                 One more ride
                 <span>↺</span>
               </button>
 
-              {/* Panel de redes sociales*/}
+              {/* Título e iconos agrupados a la derecha. */}
+              <div className="finish-social">
+                <span className="social-title">My Social Media</span>
+
+                <div className="social-icons">
+                  <a
+                    href="https://www.instagram.com/TU_USUARIO/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    title="Instagram"
+                  >
+                    <FaInstagram />
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/TU_USUARIO/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                  >
+                    <FaLinkedinIn />
+                  </a>
+
+                  <a
+                    href="https://github.com/TU_USUARIO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    title="GitHub"
+                  >
+                    <FaGithub />
+                  </a>
+
+                  <a
+                    href="https://discord.com/users/TU_ID"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Discord"
+                    title="Discord"
+                  >
+                    <FaDiscord />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Email debajo de toda la fila, con separación. */}
+            <div className="finish-contact">
               <a
-                className="text-button"
-                href=""
+                className="finish-email"
+                href="mailto: fnlopez.engineer@gmail.com"
               >
-                My Social Media
+                fnlopez.engineer@gmail.com
               </a>
             </div>
           </section>

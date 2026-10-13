@@ -103,64 +103,53 @@ export function createWorld(scene: T.Scene) {
     );
   }
 
-  // Reparte vegetación y rocas decorativas a lo largo del recorrido.
-  // Ejecuta el bloque 45 veces, con i desde 0 hasta 44.
+    // Reparte árboles y rocas, dejando libres los carteles.
   for (let i = 0; i < 45; i++) {
-    // Calcula la posición longitudinal de este conjunto de elementos.
-    // Comienza en 15 y avanza 4.2 unidades hacia Z negativo por vuelta.
     const z = 15 - i * 4.2;
 
-    // Crea un árbol del lado izquierdo.
-    tree(
-      scene,
+    const leftX = -12 - Math.sin(i * 7) * 3;
+    const rightX = 13 + Math.cos(i * 5) * 3;
+    const rightZ = z - 3;
 
-      // Math.sin varía entre -1 y 1.
-      // Esta expresión distribuye X aproximadamente entre -15 y -9.
-      // No es aleatorio: siempre genera las mismas posiciones.
-      -12 - Math.sin(i * 7) * 3,
-
-      z,
-
-      // Alterna entre cuatro tamaños:
-      // 0.7, 0.88, 1.06 y 1.24.
-      0.7 + (i % 4) * 0.18
+    // Carteles de la izquierda: bienvenida y profesión.
+    const nearLeftSign = [-9, -78].some(
+      signZ => Math.abs(z - signZ) < 9
     );
 
-    // i % 2 === 0 identifica las vueltas con índice par.
-    // Solo en esas vueltas agrega un árbol del lado derecho.
-    if (i % 2 === 0) {
+    // Carteles de la derecha: nombre y tecnologías.
+    const nearRightSign = [-42, -112].some(
+      signZ => Math.abs(rightZ - signZ) < 9
+    );
+
+    if (!nearLeftSign) {
       tree(
         scene,
+        leftX,
+        z,
+        0.7 + (i % 4) * 0.18
+      );
+    }
 
-        // Distribuye X aproximadamente entre 10 y 16.
-        13 + Math.cos(i * 5) * 3,
-
-        // Desplaza este árbol 3 unidades respecto del árbol izquierdo.
-        z - 3,
-
-        // Alterna entre tres escalas: 0.9, 1.05 y 1.2.
+    if (i % 2 === 0 && !nearRightSign) {
+      tree(
+        scene,
+        rightX,
+        rightZ,
         0.9 + (i % 3) * 0.15
       );
     }
 
-    // Cada tres vueltas agrega una roca decorativa.
+    // Conserva las rocas decorativas.
     if (i % 3 === 0) {
       const rock = mesh(
-        // Dodecaedro de radio 1, sin subdivisiones adicionales.
-        // Sus caras producen una forma geométrica similar a una roca.
         new T.DodecahedronGeometry(1, 0),
-
         materials.stone,
         scene,
-
-        // Alterna la posición lateral entre 11, 12, 13 y 14.
         11 + (i % 4),
-
         0.55,
         z
       );
 
-      // Ensancha la roca en X, la aplana en Y y la alarga en Z.
       rock.scale.set(1.6, 0.8, 1.2);
     }
   }
@@ -274,13 +263,13 @@ export function createWorld(scene: T.Scene) {
   // padre, texto, posición X, posición Z y ancho.
 
   // Cartel de bienvenida, a la izquierda.
-  sign(scene, 'TAKE THE SCENIC ROUTE', -12, -9, 6);
+  sign(scene, 'TAKE THE REAL JS ROUTE', -12, -9, 6);
 
   // Cartel con tu nombre, a la derecha.
   sign(scene, 'FERNANDO N LÓPEZ', 11, -42, 6);
 
   // Cartel con tu profesión, a la izquierda.
-  sign(scene, 'WEB DEVELOPER', -12, -78, 5.7);
+  sign(scene, 'THANKS FOR PLAYING', -12, -78, 5.7);
 
   // Cartel con tecnologías, a la derecha.
   sign(scene, 'REACT / TYPESCRIPT', 11, -112, 6);
