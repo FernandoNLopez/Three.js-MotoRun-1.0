@@ -483,3 +483,108 @@
 @media(min-width:1100px){.touch-controls{left:auto;width:270px;bottom:70px}}@media(max-width:760px){header{padding:20px 5%}.edition{display:none}.logo{font-size:33px}.code{font-size:10px;padding:10px 14px}.location{top:100px;left:5%}.hud{right:5%;top:98px;width:170px;padding:12px}.hud-top strong{font-size:16px}.hud-bottom{font-size:9px}.intro{left:7%;top:auto;bottom:17%}.intro h1{font-size:62px;letter-spacing:-4px;margin:16px 0}.intro p{font-size:12px;margin:18px 0}.intro:before{inset:-35px -10px;background:radial-gradient(ellipse,#eddcbee6,transparent 75%)}.intro-hint{font-size:7px}.footer-note,.desktop-controls{display:none}footer{left:5%;right:5%;bottom:20px;font-size:7px}.touch-controls{bottom:65px;left:5%;right:5%}.finish-card,.help-card,.pause-card{padding:28px}.finish-card h2{font-size:32px}.finish-card>p{font-size:13px}.finish-actions{gap:20px}.finish-stats{gap:25px}.overlay{padding:20px}.finish-icon{margin-bottom:20px;width:42px;height:42px;font-size:25px}.eyebrow{font-size:8px}.help-card h2{font-size:28px}.instruction{padding:8px 0}}
 @media(max-height:650px){.intro{top:22%;bottom:auto}.intro h1{font-size:48px;letter-spacing:-3px}.intro p{margin:13px 0}.location{display:none}.finish-card,.help-card{padding:22px;max-height:90svh;overflow:auto}.finish-icon{display:none}.finish-card h2{font-size:30px}.hud{top:85px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* Panel compacto con el estilo del juego. */
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  padding: 10px 14px;
+  border: 1px solid #2d4b4125;
+  border-radius: 12px;
+  background: #f7ecdde0;
+
+  /* El footer original tiene pointer-events: none.
+     Esta propiedad permite hacer clic en las redes. */
+  pointer-events: auto;
+}
+
+/* Apariencia de cada enlace. */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #2d4b41;
+  transition: color 0.15s;
+}
+
+/* Resalta el enlace al pasar el cursor. */
+.social-links a:hover {
+  color: #d6683d;
+}
+
+/* Flecha decorativa. */
+.social-links a span {
+  color: #d6683d;
+}
+
+/* Deja espacio para las redes en pantallas intermedias. */
+@media (max-width: 1100px) {
+  footer .footer-note {
+    display: none;
+  }
+}
+
+/* Distribución para pantallas pequeñas. */
+@media (max-width: 900px) {
+  footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  footer .desktop-controls {
+    display: none;
+  }
+
+  .social-links {
+    gap: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* En celular, los controles quedan por encima del footer. */
+@media (max-width: 600px) {
+  .social-links {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .touch-controls {
+    bottom: 110px;
+  }
+}
+
+/* Alinea el logo y el nombre de cada red. */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 0;
+
+  color: #2d4b41;
+  transition: color 0.15s;
+}
+
+/* Mantiene todos los logos con el mismo tamaño. */
+.social-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+/* Reemplaza el color naranja de la regla anterior para los span.
+   El texto ahora hereda el mismo color que el enlace. */
+.social-links a .social-name {
+  color: inherit;
+}
+
+/* Logo y nombre cambian juntos al pasar el cursor. */
+.social-links a:hover {
+  color: #d6683d;
+}
